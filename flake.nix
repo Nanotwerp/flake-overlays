@@ -21,17 +21,17 @@
       });
     in
     {
-      packages =
+      packages = forAllSystems ({ system, pkgs }:
         let
-          fd-nightly = forAllSystems ({ system, pkgs }:
-            let
-              rustPlatform = pkgs.makeRustPlatform {
-                cargo = pkgs.rust-bin.nightly.latest.default;
-                rustc = pkgs.rust-bin.nightly.latest.default;
-              };
-            in
-            rustPlatform.buildRustPackage rec {
-              pname = "fd-nightly";
+          rustPlatform = pkgs.makeRustPlatform {
+            cargo = pkgs.rust-bin.nightly.latest.default;
+            rustc = pkgs.rust-bin.nightly.latest.default;
+          };
+        in
+        let
+          fd-nightly = rustPlatform.buildRustPackage
+            rec {
+              pname = "fd";
               version = "10.1.0";
 
               src = pkgs.fetchFromGitHub {
@@ -73,12 +73,12 @@
                 maintainers = with maintainers; [ dywedir figsoda globin ma27 zowoq ];
                 mainProgram = "fd";
               };
-            }
-          );
+            };
         in
         {
           inherit fd-nightly;
           default = fd-nightly;
-        };
+        }
+      );
     };
 }
