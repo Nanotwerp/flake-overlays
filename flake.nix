@@ -29,7 +29,7 @@
           };
         in
         let
-          fd-nightly = pkgs.callPackage ./packages/fd/package.nix;
+          fd-nightly = pkgs.callPackage ./packages/fd/package.nix { };
         in
         {
           inherit fd-nightly;
