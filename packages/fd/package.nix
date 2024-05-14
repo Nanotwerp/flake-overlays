@@ -43,4 +43,4 @@ rustPlatform.buildRustPackage rec {
     maintainers = with maintainers; [ dywedir figsoda globin ma27 zowoq ];
     mainProgram = "fd";
   };
-};
+}
