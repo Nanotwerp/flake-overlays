@@ -14,7 +14,7 @@
     let
       overlays = [ (import rust-overlay) ];
 
-      forAllSystems = f: nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system: f {
+      forAllSystems = f: nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f {
         pkgs = import nixpkgs { inherit system overlays; };
         system = system;
       });
