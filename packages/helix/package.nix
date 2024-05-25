@@ -1,18 +1,20 @@
-{ fetchzip, lib, rustPlatform, git, installShellFiles }:
+{ fetchFromGitHub, lib, rustPlatform, git, installShellFiles }:
 
 rustPlatform.buildRustPackage rec {
   pname = "helix";
-  version = "24.03";
+  version = "24.05";
 
   # This release tarball includes source code for the tree-sitter grammars,
   # which is not ordinarily part of the repository.
-  src = fetchzip {
-    url = "https://github.com/helix-editor/helix/releases/download/${version}/helix-${version}-source.tar.xz";
-    hash = "sha256-1myVGFBwdLguZDPo1jrth/q2i5rn5R2+BVKIkCCUalc=";
+  src = fetchFromGitHub {
+    owner = "helix-editor";
+    repo = pname;
+    rev = "f1c9580e4b636d014fefb61080d8d019c14e37b7";
+    sha256 = "sha256-NtN8mGaqw6SY0V+dO1n+UO1Ywje/M0Rk9b1YnAbkPe8=";
     stripRoot = false;
   };
 
-  cargoHash = "sha256-THzPUVcmboVJHu3rJ6rev3GrkNilZRMlitCx7M1+HBE=";
+  cargoHash = "";
 
   nativeBuildInputs = [ git installShellFiles ];
 
