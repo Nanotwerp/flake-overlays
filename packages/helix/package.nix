@@ -1,4 +1,4 @@
-{ fetchzip, lib, rustPlatform, git, installShellFiles }:
+{ fetchpatch2, fetchzip, lib, rustPlatform, git, installShellFiles }:
 
 rustPlatform.buildRustPackage rec {
   pname = "helix";
@@ -13,6 +13,13 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-THzPUVcmboVJHu3rJ6rev3GrkNilZRMlitCx7M1+HBE=";
+
+  patches = [
+    (fetchpatch2 {
+      url = "https://raw.githubusercontent.com/Nanotwerp/nanonixpatches/1792030ada880770f3791e9f551b8b50707567a1/helix/lldb-dap.patch";
+      hash = "sha256-3PfSStAdq1Ijeucy6dKXTh3G/v579wf7/XNWfbJSevs=";
+    })
+  ];
 
   nativeBuildInputs = [ git installShellFiles ];
 
