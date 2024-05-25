@@ -28,11 +28,11 @@
           };
         in
         let
-          fd-nightly = pkgs.callPackage ./packages/fd/package.nix { };
+          fd = pkgs.callPackage ./packages/fd/package.nix { };
           helix = pkgs.callPackage ./packages/helix/package.nix { };
         in
         {
-          inherit fd-nightly helix;
+          inherit helix fd;
           default = helix;
         }
       );
