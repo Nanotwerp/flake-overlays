@@ -1,5 +1,5 @@
 {
-  description = "A simple, fast and user-friendly alternative to `find`";
+  description = "Some miscellaneous packages";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable-small";
@@ -28,8 +28,8 @@
           };
         in
         let
-          fd = pkgs.callPackage ./packages/fd/package.nix { };
-          helix = pkgs.callPackage ./packages/helix/package.nix { };
+          fd = pkgs.fd;
+          helix = pkgs.helix;
         in
         {
           inherit helix fd;
