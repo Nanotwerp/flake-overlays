@@ -10,17 +10,28 @@
     };
   };
 
-  outputs = { self, nixpkgs, rust-overlay }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      rust-overlay,
+    }:
     let
       overlays = [ (import rust-overlay) ];
 
-      forAllSystems = f: nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f {
-        pkgs = import nixpkgs { inherit system overlays; };
-        system = system;
-      });
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
+          system:
+          f {
+            inherit system;
+            pkgs = import nixpkgs { inherit system overlays; };
+          }
+        );
     in
     {
-      packages = forAllSystems ({ system, pkgs }:
+      packages = forAllSystems (
+        { system, pkgs }:
         let
           rustPlatform = pkgs.makeRustPlatform {
             cargo = pkgs.rust-bin.nightly.latest.default;
