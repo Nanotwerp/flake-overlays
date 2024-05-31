@@ -16,7 +16,7 @@
             inherit system;
             pkgs = import nixpkgs {
               inherit system;
-              nixpkgs.config.allowUnfree = true;
+              config.allowUnfree = true;
             };
           }
         );
