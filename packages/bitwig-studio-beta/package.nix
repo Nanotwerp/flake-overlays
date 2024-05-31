@@ -21,6 +21,7 @@
   pipewire,
   pulseaudio,
   wrapGAppsHook3,
+  vulkan-loader,
   xdg-utils,
   xorg,
   zlib,
