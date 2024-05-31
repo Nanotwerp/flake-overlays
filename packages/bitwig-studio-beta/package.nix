@@ -27,7 +27,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "bitwig-studio";
+  pname = "bitwig-studio-beta";
   version = "5.2-beta-4";
 
   src = fetchurl {
