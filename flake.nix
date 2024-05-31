@@ -3,11 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable-small";
-
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -33,18 +28,11 @@
       packages = forAllSystems (
         { system, pkgs }:
         let
-          rustPlatform = pkgs.makeRustPlatform {
-            cargo = pkgs.rust-bin.nightly.latest.default;
-            rustc = pkgs.rust-bin.nightly.latest.default;
-          };
-        in
-        let
-          fd = pkgs.fd;
-          helix = pkgs.helix;
+          bitwig-studio-beta = pkgs.callPackage ./packages/bitwig-studio-beta/package.nix { };
         in
         {
-          inherit helix fd;
-          default = helix;
+          inherit bitwig-studio-beta;
+          default = bitwig-studio-beta;
         }
       );
     };
