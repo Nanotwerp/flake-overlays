@@ -109,7 +109,8 @@ stdenv.mkDerivation rec {
         "''${gappsWrapperArgs[@]}" \
         --prefix PATH : "${lib.makeBinPath [ ffmpeg ]}" \
         --suffix PATH : "${lib.makeBinPath [ xdg-utils ]}" \
-        --suffix LD_LIBRARY_PATH : "${lib.strings.makeLibraryPath buildInputs}"
+        --suffix LD_LIBRARY_PATH : "${lib.strings.makeLibraryPath buildInputs}" \
+        --set MANGOHUD : 0
     done
 
     find $out -type f -executable -name 'jspawnhelper' | \
