@@ -29,11 +29,11 @@
 
 stdenv.mkDerivation rec {
   pname = "bitwig-studio-beta";
-  version = "5.2.2-beta";
+  version = "5.2.3";
 
   src = fetchurl {
-    url = "https://www.bitwig.com/dl/Bitwig%20Studio/5.2.2/installer_linux/";
-    sha256 = "sha256-5Lj2FPpQrgB7qnaYT4zigNIqYNVId+/1Z3Loruka9D0=";
+    url = "https://www.bitwig.com/dl/Bitwig%20Studio/5.2.3/installer_linux/";
+    sha256 = "sha256-OR912PxNroLp6IkzjsJbjLp6Fgq6HaJ3MfC0Hz3r1CE=";
   };
 
   nativeBuildInputs = [
